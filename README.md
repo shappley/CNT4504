@@ -3,9 +3,10 @@
 Put some shit here
 
 ### Group Six Members:
-- Craig Frazier
-- Stephen Shappley
-- Other dudes whose name I don't know
+- Craig Frazier (904-307-0919)
+- Stephen Shappley (904-735-9900)
+- Jonathon DePaul (904-322-1111)
+- Jae Moon (904-755-9906)
 
 ### Machines
 - 192.168.100.111
