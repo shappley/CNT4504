@@ -23,8 +23,8 @@ public class MenuTest {
     public void isInputValid() {
         Menu menu = new Menu(MenuOption.values());
         assertTrue(menu.isInputValid("1"));
-        assertTrue(menu.isInputValid("6"));
-        assertFalse(menu.isInputValid("7"));
+        assertTrue(menu.isInputValid(String.valueOf(MenuOption.values().length)));
+        assertFalse(menu.isInputValid(String.valueOf(MenuOption.values().length + 1)));
         assertFalse(menu.isInputValid("fgnjkdfjgd"));
         assertFalse(menu.isInputValid("-1"));
     }
