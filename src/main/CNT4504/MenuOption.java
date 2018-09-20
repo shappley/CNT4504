@@ -1,7 +1,7 @@
 package CNT4504;
 
 public enum MenuOption {
-    DATE("Host Current Date and Time", "cmd.exe /c date /t"),
+    DATE("Host Current Date and Time", "date"),
     UPTIME("Host Uptime", "uptime"),
     MEMORY_USE("Host Memory USe", "free"),
     NETSTAT("Host Netstat", "netstat"),
