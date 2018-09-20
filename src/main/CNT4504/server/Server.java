@@ -40,8 +40,7 @@ public class Server {
             StringBuilder builder = new StringBuilder();
             String s;
             while ((s = in.readLine()) != null) {
-                System.out.println(s);
-                builder.append(s);
+                builder.append(s).append("\n");
             }
             return builder.toString();
         } catch (IOException e) {
