@@ -9,29 +9,54 @@ import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server {
+public class Server implements Runnable {
+    private ServerSocket server;
+
+    public Server(int port) throws IOException {
+        this.server = new ServerSocket(port);
+    }
+
     public static void main(String[] args) throws Exception {
         if (args.length != 1) {
             System.out.println("Must supply port");
             System.exit(1);
         }
-        final ServerSocket server = new ServerSocket(Integer.parseInt(args[0]));
+
+        final Server server = new Server(Integer.parseInt(args[0]));
+        server.run();
+    }
+
+    @Override
+    public void run() {
         while (true) {
-            final Socket client = server.accept();
-            final BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            final PrintStream out = new PrintStream(client.getOutputStream());
-
-            final MenuOption selection = MenuOption.valueOf(in.readLine());
-
-            System.out.println(selection);
-
-            final String response = Server.executeCommand(selection);
-            out.println(response);
-            out.close();
+            try {
+                final Socket client = getNextClient();
+                serveClient(client);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public static String executeCommand(MenuOption option) {
+    public Socket getNextClient() throws IOException {
+        System.out.println("Waiting for next client...");
+        final Socket client = server.accept();
+        System.out.println("Connected to client");
+        return client;
+    }
+
+    public void serveClient(Socket client) throws IOException {
+        final BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+        final PrintStream out = new PrintStream(client.getOutputStream());
+        final String read = in.readLine();
+        System.out.println(read);
+        final MenuOption selection = MenuOption.valueOf(read);
+        final String response = executeCommand(selection);
+        out.println(response);
+        out.close();
+    }
+
+    public String executeCommand(MenuOption option) {
         ProcessBuilder pb = new ProcessBuilder(option.getCommand().split(" "));
 
         try (InputStreamReader isr = new InputStreamReader(pb.start().getInputStream());
