@@ -20,27 +20,34 @@ public class Client {
         this.out = new PrintStream(socket.getOutputStream());
     }
 
-    public static void main(String[] args) throws Exception {
+    public Client(String address, int port) throws IOException {
+        this(new Socket(address, port));
+    }
+
+    public static void main(String[] args) {
         if (args.length < 2) {
             System.out.println("Usage: <address> <port>");
             System.exit(1);
         }
 
-        final String address = args[0];
-        final int port = Integer.parseInt(args[1]);
+        try {
+            final String address = args[0];
+            final int port = Integer.parseInt(args[1]);
 
-        while (true) {
-            final Menu menu = new Menu(MenuOption.values());
-            final MenuOption selection = menu.getSelectedMenuOption();
+            while (true) {
+                final Menu menu = new Menu(MenuOption.values());
+                final MenuOption selection = menu.getSelectedMenuOption();
 
-            if (selection == MenuOption.QUIT) {
-                break;
+                if (selection == MenuOption.QUIT) {
+                    break;
+                }
+
+                final Client client = new Client(address, port);
+                client.write(selection.toString());
+                System.out.println(client.read());
             }
-
-            final Socket socket = new Socket(address, port);
-            final Client client = new Client(socket);
-            client.write(selection.toString());
-            System.out.println(client.read());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
