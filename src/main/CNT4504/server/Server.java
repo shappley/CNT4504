@@ -2,19 +2,20 @@ package CNT4504.server;
 
 import CNT4504.MenuOption;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-    private ServerSocket server;
-
-    public Server(int port) throws IOException {
-        this.server = new ServerSocket(port);
-    }
-
     public static void main(String[] args) throws Exception {
-        final ServerSocket server = new ServerSocket(9001);
+        if (args.length != 1) {
+            System.out.println("Must supply port");
+            System.exit(1);
+        }
+        final ServerSocket server = new ServerSocket(Integer.parseInt(args[0]));
         while (true) {
             final Socket client = server.accept();
             final BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
@@ -47,23 +48,5 @@ public class Server {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public Socket client() throws IOException {
-        return server.accept();
-    }
-
-    public void write(Socket client, String data) throws IOException {
-        write(new DataOutputStream(client.getOutputStream()), data);
-    }
-
-    public void write(DataOutputStream stream, String data) throws IOException {
-        stream.writeChars(data);
-    }
-
-    public String read(DataInputStream stream) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        sb.append(stream.readChar());
-        return sb.toString();
     }
 }
