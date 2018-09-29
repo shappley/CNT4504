@@ -16,15 +16,24 @@ public class MultiClientSim {
         final MenuOption option = MenuOption.valueOf(args[2]);
         final Thread[] clientThreads = new Thread[numberOfClients];
 
+        /*
+         * Ahuja:
+         * Ensure that you take the time in each client thread just before
+         * you send the request over the socket to the server and again
+         * just after the last byte of the response has been returned
+         * by the server to the client.
+         * Do not include time to display the results on the client side
+         */
         for (int i = 0; i < numberOfClients; i++) {
+            final int n = i;
             clientThreads[i] = new Thread(() -> {
                 try {
-                    long startTime = System.currentTimeMillis();
                     final Client client = new Client(args[0], port);
+                    long startTime = System.currentTimeMillis();
                     client.write(option.toString());
                     String response = client.read();
                     long endTime = System.currentTimeMillis();
-                    System.out.println((endTime - startTime) + "ms");
+                    System.out.println(n + "," + (endTime - startTime));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
