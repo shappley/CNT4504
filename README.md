@@ -1,6 +1,18 @@
-## CNT4504 - Project 1
+## CNT4504 - Project 1 and 2
 
-Put some shit here
+### Running the Project
+Server must be started before the client.
+
+- Iterative server
+  - `java CNT4504/server/Server <port number>`
+- Simple concurrent server
+  - `java CNT4504/server/ConcurrentServer <port>`
+- Pooled server
+  - `java CNT4504/server/PooledServer <port><pool size>`
+- Single client
+  - `java CNT4505/client/Client <address><port>`
+- Concurrent clients
+  - `java CNT4504/client/MultiClientSim <address><port><command><number of clients>`
 
 ### Group Six Members:
 - Craig Frazier (904-307-0919)
