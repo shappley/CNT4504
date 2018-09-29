@@ -39,7 +39,7 @@ public class Server implements Runnable {
     }
 
     public Socket getNextClient() throws IOException {
-        System.out.println("Waiting for next client...");
+        System.out.println("Waiting for next client");
         final Socket client = server.accept();
         System.out.println("Connected to client");
         return client;
@@ -48,10 +48,12 @@ public class Server implements Runnable {
     public void serveClient(Socket client) throws IOException {
         final BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
         final PrintStream out = new PrintStream(client.getOutputStream());
+        System.out.println("Reading client request");
         final String read = in.readLine();
-        System.out.println(read);
         final MenuOption selection = MenuOption.valueOf(read);
+        System.out.println("Executing " + selection);
         final String response = executeCommand(selection);
+        System.out.println("Writing response");
         out.println(response);
         out.close();
     }
