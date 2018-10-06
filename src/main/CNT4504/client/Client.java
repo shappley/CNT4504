@@ -44,7 +44,10 @@ public class Client {
 
                 final Client client = new Client(address, port);
                 client.write(selection.toString());
-                System.out.println(client.read());
+                final String read = client.read();
+                System.out.println("-----------------------------------------------------");
+                System.out.println(read);
+                System.out.println("-----------------------------------------------------");
             }
         } catch (IOException e) {
             e.printStackTrace();
