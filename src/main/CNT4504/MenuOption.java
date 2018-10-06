@@ -1,5 +1,13 @@
 package CNT4504;
 
+/**
+ * CNT4504 - Fall 2018
+ * Group 6
+ * Stephen Shappley
+ * Craig Frazier
+ * Jae Moon
+ * Jonathon Depaul
+ */
 public enum MenuOption {
     DATE("Host Current Date and Time", "date"),
     UPTIME("Host Uptime", "uptime"),

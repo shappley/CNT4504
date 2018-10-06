@@ -9,6 +9,14 @@ import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * CNT4504 - Fall 2018
+ * Group 6
+ * Stephen Shappley
+ * Craig Frazier
+ * Jae Moon
+ * Jonathon Depaul
+ */
 public class Server implements Runnable {
     private ServerSocket server;
 

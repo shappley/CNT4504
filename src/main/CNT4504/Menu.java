@@ -5,6 +5,14 @@ import java.io.InputStream;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * CNT4504 - Fall 2018
+ * Group 6
+ * Stephen Shappley
+ * Craig Frazier
+ * Jae Moon
+ * Jonathon Depaul
+ */
 public class Menu {
     private MenuOption[] options;
     private Scanner scanner;

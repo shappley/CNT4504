@@ -9,6 +9,14 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
+/**
+ * CNT4504 - Fall 2018
+ * Group 6
+ * Stephen Shappley
+ * Craig Frazier
+ * Jae Moon
+ * Jonathon Depaul
+ */
 public class Client {
     private Socket socket;
     private BufferedReader in;

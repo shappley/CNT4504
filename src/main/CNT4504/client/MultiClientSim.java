@@ -4,6 +4,14 @@ import CNT4504.MenuOption;
 
 import java.io.IOException;
 
+/**
+ * CNT4504 - Fall 2018
+ * Group 6
+ * Stephen Shappley
+ * Craig Frazier
+ * Jae Moon
+ * Jonathon Depaul
+ */
 public class MultiClientSim {
     public static void main(String[] args) {
         if (args.length != 4) {
