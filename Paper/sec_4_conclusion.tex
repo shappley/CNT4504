@@ -1,0 +1,20 @@
+\section{Conclusion}
+
+For project 1, our team tested client request response time using iterative servers. 
+Project 2 tested the same processes using concurrent servers to compare which method performed best to serve a client. 
+Before the actual testing of the client servers, we stated that the iterative performs better under a light request load while the concurrent operates better under a heavy request load. 
+The printed graphs for the iterative and concurrent tests include both the light and heavy request load. 
+Analysis of the light load results suggest the iterative model was faster while under a light request when serving the client. 
+The graph for the Iterative model displayed a steadier work progress and showed a decline and decrease after 40 clients. 
+The concurrent server under a light load showed there was a decline and decrease after 30 clients. 
+This graph shows that iterative performs better when there is a small number of clients as it has the capability to work better and outperforms the concurrent light load. 
+
+After comparing the light load client request, we tested the heavy load and compared the two graphs. 
+The iterative server was able to handle the requests very well until there was a decline and decrease in the request after 60 clients, it then picked itself back up and increased the work load past 70 clients. 
+The concurrent request was indeed better than the Iterative as it was shown on the graph. The concurrent had a steady increase as more clients were being served but there was no decrease at all during the work for the client. 
+the concurrent server was able to demonstrate it could handle heavy requests with little deviation in performance compared to time.
+
+Our team concluded if a request is small, the best method to implement would be an iterative server. 
+However, if the request is large, the concurrent server is the better option to ensure optimal performance. 
+Our research also shows there is no ``silver bullet'' when building a server. 
+One must have many considerations to build a solution that serves requests in a fast and efficient manner.
