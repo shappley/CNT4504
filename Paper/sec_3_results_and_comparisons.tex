@@ -29,7 +29,7 @@ For this test, the metric that was measured was latency, by measuring response t
 Next it is important to plan how to capture the required metrics. For this test, the team determined to subtract the system time a response was received by the client from the time that the request was sent. This was implemented in the class \code{MultiClientSim} by using a for-loop to iterate through each active client, declaring a \code{startTime} variable using \code{System.currentTimeMillis()} and subtracting an \code{endTime} variable after the server response also using \code{System.currentTimeMillis()}. 
 
 The first series of tests were run using an iterative protocol, measuring the mean server response time as correlating to the number of clients. Both tests stepped through a progression of clients  using the set  $n = \{1, 5, 10, 20, 30, 40, 50, 60, 70, 75\}$.  
-The first test measured response times for a \code{netstat} request (graph attachment 1), while the second test measured response time for a \code{date} query (graph attachment 2). 
+The first test measured response times for a \code{netstat} request (Graph 1), while the second test measured response time for a \code{date} query (Graph 2). 
 In the second series of tests, these tests were repeated but with the server process configured to handle multiple client requests concurrently by spawning a thread per request.
 
 \subsection{Results}
