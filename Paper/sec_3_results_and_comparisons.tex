@@ -28,7 +28,22 @@ For this test, the metric that was measured was latency, by measuring response t
 
 Next it is important to plan how to capture the required metrics. For this test, the team determined to subtract the system time a response was received by the client from the time that the request was sent. This was implemented in the class \code{MultiClientSim} by using a for-loop to iterate through each active client, declaring a \code{startTime} variable using \code{System.currentTimeMillis()} and subtracting an \code{endTime} variable after the server response also using \code{System.currentTimeMillis()}. 
 
-The first series of tests were run using an iterative protocol, measuring the mean server response time as correlating to the number of clients. Both tests stepped through a progression of clients  using the set  $n = \{1, 5, 10, 20, 30, 40, 50, 60, 70, 75\}$.  The first test measured response times for a \code{netstat} request (graph attachment 1), while the second test measured response time for a \code{date} query (graph attachment 2). In the second series of tests, these tests were repeated but with the server process configured to handle multiple client requests concurrently by spawning a thread per request.
+The first series of tests were run using an iterative protocol, measuring the mean server response time as correlating to the number of clients. Both tests stepped through a progression of clients  using the set  $n = \{1, 5, 10, 20, 30, 40, 50, 60, 70, 75\}$.  
+The first test measured response times for a \code{netstat} request (graph attachment 1), while the second test measured response time for a \code{date} query (graph attachment 2). 
+In the second series of tests, these tests were repeated but with the server process configured to handle multiple client requests concurrently by spawning a thread per request.
 
-For the final round of tests, the same tests from the prior two tests were repeated using a managed concurrent server, implemented using Thread Pools. The size of the pool was fixed at 16 threads.
-TODO: put some more stuff here about thread pool tests.
+\subsection{Results}
+
+The iterative server performs fairly well with a light load requesting date and time, increasing linearly as clients are added and then roughly plateauing after 40 clients. 
+The concurrent server does not fare as well with response time rising sharply for the first 30 clients, after which response time levels out. 
+Our results showed that the iterative server ranged from a response time of 20 ms to 35 ms as we reached 75 servers.
+The concurrent server performed better at higher client levels, peaking at less than 25 ms. 
+During the netstat tests, both iterative and concurrent protocol response times increase exponentially. 
+For the iterative protocol the response times increase very sharply, reaching over 1000 ms after the first 30 clients to approximately 7500 ms after 75 clients. 
+The concurrent protocol clearly performs better on this test, still being around approximately 800 ms after 30 clients and peaking at less than 5000 ms after 75 clients. 
+
+The testing confirmed that the iterative protocol performs better with lighter loads and fewer clients, but the concurrent protocol outperforms as we increase the load and client count.
+We saw severe fluctuation during the date and time tests with both protocols between 30 and 75 clients. 
+While many performance tests start with a measure of latency, they also typically include other KPIs such as CPU and memory utilization, page file utilization, disk time and amount of free space
+\cite{molyneaux}.
+Adding some of these extra KPIs on future testing could help explain testing inconsistencies such as fluctuations and high standard deviations.
