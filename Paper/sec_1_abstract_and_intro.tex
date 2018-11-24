@@ -21,7 +21,7 @@ This deficiency in performance is attributed to excessive queuing times resultin
 
 The second protocol tested was the concurrent model. 
 This model functions similarly to the iterative model; a request is made from the client and the server responds. 
-The key differentiator being the concurrent server is capable of spawning child processes which allows it to handle more than one task at a time. 
+The key differentiator being the concurrent server is capable of spawning child processes, known as a \textit{Thread}, which allows it to handle more than one task at a time. 
 Concurrent server performance under a heavy load is much better than the iterative model as there is no queuing delay. 
 However, under a light load, the iterative server outperforms the concurrent server which is attributed to the lack of overhead required to spawn a child thread to handle a task. 
 
@@ -33,5 +33,5 @@ Thread pools typically result in better performance and stability.
 The results of our research indicate that utilizing the thread pool methodology yields the best results overall when tracking performance compared to overhead.
 The goal of any network is to provide a timely response to a request. 
 When designing a network, it is imperative the engineer understands exactly what is required to complete the task in a manner that does not compromise speed or stability. 
-One may assume that a concurrent server is the best option over and iterative server, but as our research indicates, this is not always the case. 
+One may assume that a concurrent server is the best option over an iterative server, but as our research indicates, this is not always the case. 
 A delicate balance between design and demand must be met to result in optimal performance.
